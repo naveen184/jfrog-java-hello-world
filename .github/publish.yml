@@ -1,0 +1,18 @@
+name: run the workflow
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: run-workflow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: print trigger details
+        run: |
+          ech ${{ github.event.client-payload.welcome-github }}    
+          ech ${{ github.event.client_payload.hello-world }}  
+          ech "welcome to my world"
