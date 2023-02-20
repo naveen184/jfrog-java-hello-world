@@ -1,0 +1,31 @@
+name: Build and Deploy to Sandbox
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: Cache Depenedencies
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
+    
+    - name: Build with maven
+      run: mvn -B clean package -s .maven/settings.xml
+    
+    - name: publish artifact
+    env: 
+       run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
+    
+      
