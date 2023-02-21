@@ -19,7 +19,13 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
 
       - name: Log in to JFrog
-        run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets.MYURL }}
-      - name: Publish artifacts
-        run: jfrog rt upload --recursive --regexp="target/*.jar" myrepo-local/
+        with:
+        server-id: jfrog
+        server-url: ${{ secrets.JFROG_URL }}
+        user: ${{ secrets.JFROG_USER }}
+        password: ${{ secrets.JFROG_PASSWORD }}
+      run: |
+        jfrog rt upload target/*.jar my-local-repo/ --flat=true
+      
+
  
