@@ -1,0 +1,27 @@
+name: Publish Artifacts to JFrog
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build project
+      run: mvn clean install
+
+    - name: Publish artifacts to JFrog
+      uses: jfrog/setup-jfrog-cli@v1
+      with:
+        server-id: jfrog
+        server-url: ${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
+        user: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+      run: |
+        jfrog rt upload target/*.jar my-local-repo/ --flat=true
