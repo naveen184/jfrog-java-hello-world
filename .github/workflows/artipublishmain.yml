@@ -20,7 +20,7 @@ jobs:
       uses: jfrog/setup-jfrog-cli@v1
       with:
         server-id: jfrog
-        server-url: ${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
+        server-url: ${{ secrets.MYURL }}
         user: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
       run: |
