@@ -19,7 +19,7 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
 
       - name: Log in to JFrog
-        run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets."https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22" }}
+        run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets.'https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22' }}
       - name: Publish artifacts
         run: jfrog rt upload --recursive --regexp="target/*.jar" myrepo-local/
  
