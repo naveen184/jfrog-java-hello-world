@@ -26,6 +26,6 @@ jobs:
     
     - name: publish artifact
     env: 
-       run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets.https://strange.jfrog.io/ui/admin/projects/overview?projectKey=u22 }}
+       run: jfrog rt config --interactive=false --user=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} --url=${{ secrets.MYURL }}
     
       
